@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo cáo</title>
+    <link rel="stylesheet" href="./css/layui.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <style>
+        h1 {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .layui-layout-admin .layui-body {
+            bottom: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layui-layout layui-layout-admin" style="min-width: 700px">
+        <div class="layui-header header header-demo" winter="">
+          <div class="layui-main">
+            <a href="/public/index.html">
+              <span
+                style="
+                  font-size: 18px;
+                  line-height: 60px;
+                  text-align: center;
+                  height: 60px;
+                  width: 200px;
+                  color: white;
+                "
+                >Hệ thống quản lý học sinh</span
+              >
+            </a>
+  
+            <ul style="float: right" class="layui-nav">
+              <li class="layui-nav-item">
+                <a href="/public/index.html"
+                  >Thông tin cá nhân<span class="layui-badge-dot"></span
+                ></a>
+              </li>
+              <li class="layui-nav-item">
+                <a href=""><img src="./images/static/logo.jpg" class="layui-nav-img" /></a>
+                <dl class="layui-nav-child">
+                  <dd><a href="javascript:;">Đổi mật khẩu</a></dd>
+                  <dd><a href="/">Đăng xuất</a></dd>
+                </dl>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="layui-side layui-bg-black">
+          <div class="layui-side-scroll">
+            <ul class="layui-nav layui-nav-tree">
+              <li class="layui-nav-item">
+                <a class="javascript:;" href="javascript:;"
+                  ><i class="layui-icon layui-icon-list" style="font-size: 22px; color: white"></i
+                  >Quản lý<span class="layui-nav-more"></span
+                ></a>
+                <dl class="layui-nav-child">
+                  <dd class="">
+                    <a href="/public/table.html">Học sinh</a>
+                  </dd>
+                </dl>
+              </li>
+            </ul>
+            <!--nav page báo cáo học kỳ -->
+            <ul class="layui-nav layui-nav-tree">
+              <li class="layui-nav-item">
+                <a class="javascript:;" href="javascript:;"
+                  ><i class="layui-icon layui-icon-list" style="font-size: 22px; color: white"></i
+                  >Báo Cáo học kỳ<span class="layui-nav-more"></span
+                ></a>
+                <dl class="layui-nav-child">
+                  <dd class="">
+                    <a href="/public/reportsemester.html">Học kỳ 1</a>
+                  </dd>
+                  <dd class="">
+                    <a href="/public/reportsemester.html">Học kỳ 2</a>
+                  </dd>
+                </dl>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+
+    <div class="layui-body" style="min-width: 450px">
+        <h1>Báo cáo tổng kết học kỳ</h1>
+        <!-- dropdown học kỳ-->
+        <div class="layui-unselect layui-form-select" id="scene-select">
+            <div class="layui-select-title">
+                <input type="text" placeholder="Học kỳ 1" readonly="" class="layui-input layui-unselect">
+                <i class="layui-edge"></i>
+            </div>
+            <dl class="layui-anim layui-anim-upbit" data-role="menu">
+                <dd lay-value="" class="layui-select-tips layui-this">Học kỳ 1</dd>
+                <dd lay-value="0" class="">Học kỳ 1</dd>
+                <dd lay-value="1" class="">Học kỳ 2</dd>
+               
+            </dl>
+        </div>
+
+        <!-- chức năng hiện có -->
+        <div style="display: none" id="toolbar1">
+            <button type="button" class="layui-btn layui-btn-sm">Thêm</button>
+            <button type="button" class="layui-btn layui-btn-sm">Chỉnh sửa</button>
+            <button type="button" class="layui-btn layui-btn-sm">Xoá</button>
+        </div>
+        <table id="demo" lay-filter="test"></table>
+    </div>
+</body>
+
+<script src="./layui.js"></script>
+<script type="text/javascript" src="./reportsemester.js">
+
+
+</script>
+
+
+<script>
+
+    layui.use('element', function () {
+        var element = layui.element;
+    });
+
+    // xử lý dropdow
+    layui.use(['jquery', 'dropdown'], function ($, dropdown) {
+        console.log("da vao");
+        var instance = dropdown.render({
+            dropdown: '#scene-select', 
+            toggle: '.layui-select-title', 
+            menu: '[data-role="menu"]', 
+            trigger: 'click', 
+            className: {
+                hideAnimation: 'layui-anim layui-anim-downbit', 
+                showDropdown: 'layui-form-selected', 
+                showMenu: '' 
+            }
+        });
+  
+        var $input = $('#scene-select .layui-input')
+        $('[data-role="menu"]').on('click', 'dd', function () {
+            var $this = $(this);
+            var value = $this.attr('lay-value');
+            var text = $this.text();
+            $input.val(value ? $.trim(text) : '');
+            instance.hide();
+        });
+    })
+
+
+    layui.use('table', function () {
+        var table = layui.table;
+
+        table.render({
+            skin: 'row',
+            even: true,
+            elem: '#demo',
+            height: 512,
+            url: '/dataclass',
+            page: true,
+            cols: [
+                [
+                    { type: 'numbers', fixed: 'left' },
+                    { field: 'class', title: 'Lớp', width: 140, sort: true },
+                    { field: 'number', title: 'Sĩ Số ', width: 234, sort: true },
+                    { field: 'pass', title: 'Số lượng đạt', width: 220, sort: true },
+                    { field: 'rate', title: 'Tỉ lệ', width: 220, sort: true },
+                ],
+            ],
+            toolbar: '#toolbar1',
+            defaultToolbar: ['filter', 'print', 'exports'],
+        });
+    });
+</script>
+
+</html>
