@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./css/layui.css" />
+
+    <title>layuiTest</title>
+    <style>
+      h1 {
+        text-align: center;
+        padding: 20px;
+      }
+      .layui-layout-admin .layui-body {
+        bottom: 0px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="layui-layout layui-layout-admin" style="min-width: 700px">
+      <div class="layui-header header header-demo" winter="">
+        <div class="layui-main">
+          <a href="/">
+            <span
+              style="
+                font-size: 18px;
+                line-height: 60px;
+                text-align: center;
+                height: 60px;
+                width: 200px;
+                color: white;
+              "
+              >Hệ thống quản lý tình trạng học sinh</span
+            >
+          </a>
+
+          <ul style="float: right" class="layui-nav">
+            <li class="layui-nav-item">
+              <a href="./console.html">控制台<span class="layui-badge">9</span></a>
+            </li>
+            <li class="layui-nav-item">
+              <a href="">Trung tâm cá nhân<span class="layui-badge-dot"></span></a>
+            </li>
+            <li class="layui-nav-item">
+              <a href=""
+                ><img src="./images/static/logo.jpg" class="layui-nav-img" />Chưa đăng nhập</a
+              >
+              <dl class="layui-nav-child">
+                <dd><a href="javascript:;">Sửa đổi thông tin</a></dd>
+                <dd><a href="javascript:;">Quản lý an toàn</a></dd>
+                <dd><a href="/">Đăng xuất</a></dd>
+              </dl>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+          <ul class="layui-nav layui-nav-tree">
+            <li class="layui-nav-item">
+              <a class="javascript:;" href="javascript:;"
+                ><i class="layui-icon layui-icon-username" style="font-size: 18px; color: white"></i
+                >Người dùng học sinh<span class="layui-nav-more"></span
+              ></a>
+              <dl class="layui-nav-child">
+                <dd>
+                  <a href="./index.html">Thông tin đàu vào</a>
+                </dd>
+              </dl>
+            </li>
+
+            <li class="layui-nav-item">
+              <a class="javascript:;" href="javascript:;"
+                ><i class="layui-icon layui-icon-list" style="font-size: 22px; color: white"></i
+                >Quản lý thông tin<span class="layui-nav-more"></span
+              ></a>
+              <dl class="layui-nav-child">
+                <dd class="">
+                  <a href="/demo/grid.html">Xem thông tin học sinh</a>
+                </dd>
+                <dd class="">
+                  <a href="/demo/admin.html">Thông tin chỉ tiết</a>
+                </dd>
+              </dl>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="layui-body" style="min-width: 450px">
+        <h1>Hiển thị thông tin</h1>
+        <div style="display: none" id="toolbar1">
+          <button type="button" class="layui-btn layui-btn-sm">Thêm</button>
+          <button type="button" class="layui-btn layui-btn-sm">Chỉnh sửa</button>
+          <button type="button" class="layui-btn layui-btn-sm">Xoá</button>
+        </div>
+        <table id="demo" lay-filter="test"></table>
+      </div>
+    </div>
+  </body>
+  <script src="./layui.js"></script>
+  <script>
+    layui.use('element', function () {
+      var element = layui.element;
+    });
+    layui.use('table', function () {
+      var table = layui.table;
+
+      table.render({
+        skin: 'row',
+        even: true,
+        elem: '#demo',
+        height: 512,
+        url: '/testdata',
+        page: true,
+        cols: [
+          [
+            { type: 'numbers', fixed: 'left' },
+            { type: 'checkbox', fixed: 'left' },
+            { field: 'id', title: 'Mã số', width: 100, sort: true },
+            { field: 'name', title: 'Tên', width: 120 },
+            { field: 'sex', title: 'Giới tính', width: 80, sort: true },
+            { field: 'birthday1', title: 'Ngày sinh', width: 120, sort: true },
+            { field: 'xueyuan', title: 'Trường đại học', width: 177 },
+            { field: 'athome', title: 'Ở nhà', width: 80, sort: true },
+            { field: 'group[front]', title: 'Nhóm (trước)', width: 120, sort: true },
+            { field: 'group[end]', title: 'Nhóm (sau)', width: 120, sort: true },
+            { field: 'group[database]', title: 'Nhóm (cơ sở dữ liệu)', width: 120, sort: true },
+            { field: 'group[image]', title: 'Nhóm (hình ảnh)', width: 120, sort: true },
+            { field: 'comment', title: 'Bình luận', width: 180 },
+          ],
+        ],
+        toolbar: '#toolbar1',
+        defaultToolbar: ['filter', 'print', 'exports'],
+      });
+    });
+  </script>
+  <script></script>
+</html>
