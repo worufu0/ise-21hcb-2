@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Đăng Ký</title>
+    <link rel="stylesheet" href="./css/layui.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="../static/image/code.png">
+</head>
+
+<body>
+
+    <div class="login-main">
+        <header class="layui-elip" style="width: 82%">Trang Đăng Ký</header>
+
+        <form class="layui-form">
+            <div class="layui-input-inline">
+                <div class="layui-inline" style="width: 85%">
+                    <input type="text" id="user" name="account" required lay-verify="required" placeholder="Vui lòng nhập tên người dùng"
+                        autocomplete="off" class="layui-input">
+                </div>
+
+                <div class="layui-inline">
+                    <i class="layui-icon" id="ri" style="color: green;font-weight: bolder;" hidden></i>
+                </div>
+                <div class="layui-inline">
+                    <i class="layui-icon" id="wr" style="color: red; font-weight: bolder;" hidden>ဆ</i>
+                </div>
+            </div>
+            <div class="layui-input-inline">
+                <div class="layui-inline" style="width: 85%">
+                    <input type="password" id="pwd" name="password" required lay-verify="required" placeholder="Xin vui lòng nhập mật khẩu"
+                        autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-inline">
+                    <i class="layui-icon" id="pri" style="color: green;font-weight: bolder;" hidden></i>
+                </div>
+                <div class="layui-inline">
+                    <i class="layui-icon" id="pwr" style="color: red; font-weight: bolder;" hidden>ဆ</i>
+                </div>
+            </div>
+
+            <div class="layui-input-inline">
+                <div class="layui-inline" style="width: 85%">
+                    <input type="password" id="rpwd" name="repassword" required lay-verify="required"
+                        placeholder="Vui lòng xác nhận mật khẩu của bạn" autocomplete="off" class="layui-input">
+                </div>
+
+                <div class="layui-inline">
+                    <i class="layui-icon" id="rpri" style="color: green;font-weight: bolder;" hidden></i>
+                </div>
+    
+                <div class="layui-inline">
+                    <i class="layui-icon" id="rpwr" style="color: red; font-weight: bolder;" hidden>ဆ</i>
+                </div>
+            </div>
+
+
+            <div class="layui-input-inline login-btn" style="width: 85%">
+                <button type="submit" lay-submit lay-filter="sub" class="layui-btn">Đăng ký</button>
+            </div>
+            <hr style="width: 85%" />
+            <p style="width: 85%"><a href="login.html" class="fl">Bạn đã sẵn sàn tạo một tài khoản? Đăng nhập ngay lập tức</a><a href="javascript:;"
+                    class="fr">quên mật khẩu?</a></p>
+        </form>
+    </div>
+
+
+    <script src="./layui.js"></script>
+    <script type="text/javascript">
+        layui.use(['form', 'jquery', 'layer'], function () {
+            var form = layui.form;
+            var $ = layui.jquery;
+            var layer = layui.layer;
+            var id = 0;
+        
+            $('#user').blur(function () {
+                var user = $(this).val();
+
+                //alert(user);
+                $.ajax({
+                    url: '/registerCheck',
+                    type: 'post',
+                    dataType: 'text',
+                    data: { user: user },
+                 
+                    success: function (data) {
+                        if (data != 0) {
+                            id = data;
+                
+                            $('#ri').removeAttr('hidden');
+                            $('#wr').attr('hidden', 'hidden');
+
+                        } else {
+                            $('#wr').removeAttr('hidden');
+                            $('#ri').attr('hidden', 'hidden');
+                            layer.msg('Tên người dùng hiện tại đã được sử dụng! ')
+
+                        }
+
+                    }
+                })
+
+            });
+
+    
+            $('#pwd').blur(function () {
+                var reg = /^[\w]{6,12}$/;
+                if (!($('#pwd').val().match(reg))) {
+           
+                    $('#pwr').removeAttr('hidden');
+                    $('#pri').attr('hidden', 'hidden');
+                    layer.msg('Vui lòng nhập mật khẩu hợp lệ');
+                } else {
+                    $('#pri').removeAttr('hidden');
+                    $('#pwr').attr('hidden', 'hidden');
+                }
+            });
+
+      
+            $('#rpwd').blur(function () {
+                if ($('#pwd').val() != $('#rpwd').val()) {
+                    $('#rpwr').removeAttr('hidden');
+                    $('#rpri').attr('hidden', 'hidden');
+                    layer.msg('Mật khẩu được nhập hai lần không khớp!');
+                } else {
+                    $('#rpri').removeAttr('hidden');
+                    $('#rpwr').attr('hidden', 'hidden');
+                };
+            });
+
+            
+            
+     
+            form.on('submit(sub)', function (data) {
+                var data1 = data.field;
+                //repassword
+                $.each(data1, function (_key) {
+                    var key = _key;
+                    var value = data1[_key];
+                    if (key == "repassword") {
+                        delete data1[_key];
+                    }
+                });
+                data.field["userId"] = id ;
+                var jsonData = JSON.stringify(data.field);
+                //jsonData = JSON.parse(jsonData);
+                console.log(jsonData);
+                $.ajax({
+                    url: '/register',
+                    type: 'post',
+                    dataType: 'json',
+                    data: "userData=" + jsonData,
+                    success: function (data) {
+                        if (data == 1) {
+                            layer.msg('đăng ký thành công');
+                            ///location.href = "login.html";
+                        } else {
+                            layer.msg('đăng ký không thành công');
+                        }
+                    }
+                })
+  
+                return false;
+            });
+
+        });
+    </script>
+</body>
+
+</html>
