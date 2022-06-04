@@ -1,242 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./css/layui.css" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./css/layui.css">
-
-    <title>layuiTest</title>
+    <title>Hệ thống quản lý học sinh</title>
     <style>
-        h1 {
-            text-align: center;
-            padding: 20px;
-        }
+      h1 {
+        text-align: center;
+        padding: 20px;
+      }
 
+      #formcontainer {
+        width: 75%;
+        margin: auto;
+      }
+
+      @media screen and (max-width: 700px) {
         #formcontainer {
-            width: 75%;
-            margin: auto;
+          width: 95%;
+          float: left;
         }
+      }
 
-        @media screen and (max-width: 700px) {
-            #formcontainer {
-                width: 95%;
-                float: left;
-            }
-        }
+      #container {
+        min-width: 700px;
+      }
 
-        #container {
-            min-width: 700px;
-        }
+      .layui-layout-admin .layui-body {
+        bottom: 0px;
+      }
 
-        .layui-layout-admin .layui-body {
-            bottom: 0px;
-        }
-
-        .layui-form-label.layui-required:after {
-            content: "*";
-            color: red;
-            position: absolute;
-            top: 5px;
-            left: 15px;
-        }
+      .layui-form-label.layui-required:after {
+        content: '*';
+        color: red;
+        position: absolute;
+        top: 5px;
+        left: 15px;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="container" class="layui-layout layui-layout-admin">
-        <div class="layui-header header header-demo" winter="">
-            <div class="layui-main">
-                <a href="/">
-                    <span
-                        style="font-size: 18px;line-height: 60px;text-align: center;height: 60px;width: 200px;color: white;">学籍管理系统</span>
-                </a>
+      <div class="layui-header header header-demo" winter="">
+        <div class="layui-main">
+          <a href="/">
+            <span
+              style="
+                font-size: 18px;
+                line-height: 60px;
+                text-align: center;
+                height: 60px;
+                width: 200px;
+                color: white;
+              "
+              >学籍管理系统</span
+            >
+          </a>
 
-
-                <ul style="float: right;" class="layui-nav">
-                    <li class="layui-nav-item">
-                        <a href="./console.html">Dashboard<span class="layui-badge">9</span></a>
-                    </li>
-                    <li class="layui-nav-item">
-                        <a href="">Trang cá nhân<span class="layui-badge-dot"></span></a>
-                    </li>
-                    <li class="layui-nav-item">
-                        <a href=""><img src="./images/static/logo.jpg" class="layui-nav-img">
-                            <%=account%>
-                        </a>
-                        <div id="userId" style="display: hidden;">
-                            <%=ID%>
-                        </div>
-                        <dl class="layui-nav-child">
-                            <dd><a href="javascript:;">Thay đổi thông tin</a></dd>
-                            <dd><a href="javascript:;">Quản lý an toàn</a></dd>
-                            <dd><a href="/">Quay lại</a></dd>
-                        </dl>
-                    </li>
-                </ul>
-            </div>
+          <ul style="float: right" class="layui-nav">
+            <li class="layui-nav-item">
+              <a href="/public/index.html"
+                >Thông tin cá nhân<span class="layui-badge-dot"></span
+              ></a>
+            </li>
+            <li class="layui-nav-item">
+              <a href=""
+                ><img src="./images/static/logo.jpg" class="layui-nav-img" />
+                <%=account%>
+              </a>
+              <div id="userId" style="display: hidden"><%=ID%></div>
+              <dl class="layui-nav-child">
+                <dd><a href="javascript:;">Đổi mật khẩu</a></dd>
+                <dd><a href="/">Đăng xuất</a></dd>
+              </dl>
+            </li>
+          </ul>
         </div>
-        <div class="layui-side layui-bg-black">
-            <div class="layui-side-scroll">
-
-                <ul class="layui-nav layui-nav-tree">
-
-                    <li class="layui-nav-item">
-                        <a class="javascript:;" href="javascript:;"><i class="layui-icon layui-icon-username"
-                                style="font-size: 18px; color: white;"></i>Sinh viên<span
-                                class="layui-nav-more"></span></a>
-                        <dl class="layui-nav-child">
-                            <dd>
-                                <a href="./index.html">Thông tin đầu vào</a>
-                            </dd>
-                        </dl>
-                    </li>
-
-                    <li class="layui-nav-item">
-                        <a class="javascript:;" href="javascript:;"><i class="layui-icon layui-icon-list"
-                                style="font-size: 22px; color: white;"></i>Quản lý thông tin<span
-                                class="layui-nav-more"></span></a>
-                        <dl class="layui-nav-child">
-                            <dd class="">
-                                <a href="./table.html">Xem thông tin sinh viên</a>
-                            </dd>
-                            <dd class="">
-                                <a href="/demo/admin.html">Thông tin chi tiết</a>
-                            </dd>
-                        </dl>
-                    </li>
-
-
-
-
-                </ul>
-
-            </div>
+      </div>
+      <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+          <ul class="layui-nav layui-nav-tree">
+            <li class="layui-nav-item">
+              <a class="javascript:;" href="javascript:;"
+                ><i class="layui-icon layui-icon-list" style="font-size: 22px; color: white"></i
+                >Quản lý<span class="layui-nav-more"></span
+              ></a>
+              <dl class="layui-nav-child">
+                <dd class="">
+                  <a href="./table.html">Học sinh</a>
+                </dd>
+              </dl>
+            </li>
+          </ul>
         </div>
-        <div class="layui-body" style="min-width: 450px;">
-            <h1>Bộ sưu tập thông tin</h1>
-            <div id="formcontainer">
-                <form method="POST" class="layui-form">
-                    <div class="layui-form-item">
-                        <label class="layui-form-label layui-required">Tên của bạn</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="name" placeholder="Vui lòng nhập" autocomplete="off"
-                                lay-verify="required" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label layui-required">Thẻ học sinh</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="id" placeholder="Vui lòng nhập" autocomplete="off"
-                                lay-verify="required" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">Giới tính</label>
-                        <div class="layui-input-block">
-                            <input type="radio" name="sex" value="male" title="Nam" checked>
-                            <input type="radio" name="sex" value="female" title="Nữ">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label layui-required">Ngày sinh</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="birthday1" placeholder="Vui lòng nhập" autocomplete="off"
-                                lay-verify="required|date" class="layui-input" id="birthday1">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">Trường đại học</label>
-                        <div class="layui-input-block">
-                            <select name="xueyuan" lay-filter="xueyuan">
-                                <option value="Trường Kỹ thuật Điều khiển">Trường Kỹ thuật Điều khiển</option>
-                                <option value="Trường Kỹ thuật Máy tính và Truyền thông">Trường Kỹ thuật Máy tính và
-                                    Truyền thông</option>
-                                <option value="Toán học và Thống kê">Toán học và Thống kê</option>
-                                <option value="Trường kinh tế">Trường kinh tế</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">Phòng</label>
-                        <div class="layui-input-block">
-                            <input type="checkbox" name="group[front]" title="Frontend">
-                            <input type="checkbox" name="group[end]" title="Backend">
-                            <input type="checkbox" name="group[database]" title="Database">
-                            <input type="checkbox" name="group[image]" title="Image">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">Bạn có nhà không</label>
-                        <div class="layui-input-block">
-                            <input type="checkbox" name="athome" lay-skin="switch" lay-text="是|否" checked>
-                        </div>
-                    </div>
-
-
-                    <div class="layui-form-item layui-form-text">
-                        <label class="layui-form-label">Có đề xuất gì không</label>
-                        <div class="layui-input-block">
-                            <input type="checkbox" name="athome" lay-skin="switch" lay-text="Có|Không" checked>
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <div class="layui-input-block">
-                            <button class="layui-btn" lay-submit lay-filter="submit1">Xác nhận ngay bây giờ</button>
-                            <button type="reset" class="layui-btn layui-btn-primary">Xóa hết</button>
-                        </div>
-                    </div>
-                </form>
+      </div>
+      <div class="layui-body" style="min-width: 450px">
+        <h1>Thông tin cá nhân</h1>
+        <div id="formcontainer">
+          <form method="POST" class="layui-form">
+            <div class="layui-form-item">
+              <label class="layui-form-label layui-required">Tên của bạn</label>
+              <div class="layui-input-block">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Vui lòng nhập"
+                  autocomplete="off"
+                  lay-verify="required"
+                  class="layui-input"
+                />
+              </div>
             </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label layui-required">Thẻ học sinh</label>
+              <div class="layui-input-block">
+                <input
+                  type="text"
+                  name="id"
+                  placeholder="Vui lòng nhập"
+                  autocomplete="off"
+                  lay-verify="required"
+                  class="layui-input"
+                />
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">Giới tính</label>
+              <div class="layui-input-block">
+                <input type="radio" name="sex" value="male" title="Nam" checked />
+                <input type="radio" name="sex" value="female" title="Nữ" />
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label layui-required">Ngày sinh</label>
+              <div class="layui-input-block">
+                <input
+                  type="text"
+                  name="birthday1"
+                  placeholder="Vui lòng nhập"
+                  autocomplete="off"
+                  lay-verify="required|date"
+                  class="layui-input"
+                  id="birthday1"
+                />
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">Trường đại học</label>
+              <div class="layui-input-block">
+                <select name="xueyuan" lay-filter="xueyuan">
+                  <option value="Trường Kỹ thuật Điều khiển">Trường Kỹ thuật Điều khiển</option>
+                  <option value="Trường Kỹ thuật Máy tính và Truyền thông">
+                    Trường Kỹ thuật Máy tính và Truyền thông
+                  </option>
+                  <option value="Toán học và Thống kê">Toán học và Thống kê</option>
+                  <option value="Trường kinh tế">Trường kinh tế</option>
+                </select>
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">Phòng</label>
+              <div class="layui-input-block">
+                <input type="checkbox" name="group[front]" title="Frontend" />
+                <input type="checkbox" name="group[end]" title="Backend" />
+                <input type="checkbox" name="group[database]" title="Database" />
+                <input type="checkbox" name="group[image]" title="Image" />
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <label class="layui-form-label">Bạn có nhà không</label>
+              <div class="layui-input-block">
+                <input type="checkbox" name="athome" lay-skin="switch" lay-text="是|否" checked />
+              </div>
+            </div>
+
+            <div class="layui-form-item layui-form-text">
+              <label class="layui-form-label">Có đề xuất gì không</label>
+              <div class="layui-input-block">
+                <input
+                  type="checkbox"
+                  name="athome"
+                  lay-skin="switch"
+                  lay-text="Có|Không"
+                  checked
+                />
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="submit1">Xác nhận</button>
+                <button type="reset" class="layui-btn layui-btn-primary">Xóa hết</button>
+              </div>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
-</body>
-<script src="./layui.js"></script>
-<script>
+  </body>
+  <script src="./layui.js"></script>
+  <script>
     layui.use('element', function () {
-        var element = layui.element;
-
-
-    })
+      var element = layui.element;
+    });
     layui.use('form', function () {
-        var form = layui.form;
-        var $ = layui.jquery;
-        $("#userId").hide();
-        form.on('submit(submit1)', function (data) {
-            var id = $("#userId").text();
-            data.field["userId"] = id;
-            layer.msg(JSON.stringify(data.field));
-            var userData = JSON.stringify(data.field);
-            console.log(userData);
-            debugger;
-            $.ajax({
-                url: '/putForm',
-                data: "userForm=" + userData,
-                dataType: 'json',
-                type: 'post',
-                success: function (data) {
-                    if (data == '1') {
-                        layer.msg('Gửi thành công!')
-                    } else {
-                        layer.msg('Gửi không thành công');
-                    }
-                }
-            });
-
-
-            return false;
+      var form = layui.form;
+      var $ = layui.jquery;
+      $('#userId').hide();
+      form.on('submit(submit1)', function (data) {
+        var id = $('#userId').text();
+        data.field['userId'] = id;
+        layer.msg(JSON.stringify(data.field));
+        var userData = JSON.stringify(data.field);
+        console.log(userData);
+        debugger;
+        $.ajax({
+          url: '/putForm',
+          data: 'userForm=' + userData,
+          dataType: 'json',
+          type: 'post',
+          success: function (data) {
+            if (data == '1') {
+              layer.msg('Gửi thành công!');
+            } else {
+              layer.msg('Gửi không thành công');
+            }
+          },
         });
 
+        return false;
+      });
     });
     layui.use('laydate', function () {
-        var laydate = layui.laydate;
+      var laydate = layui.laydate;
 
-        laydate.render({
-            elem: '#birthday1'
-        });
+      laydate.render({
+        elem: '#birthday1',
+      });
     });
-</script>
-
-
+  </script>
 </html>

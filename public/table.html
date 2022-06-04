@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./css/layui.css" />
 
-    <title>layuiTest</title>
+    <title>Hệ thống quản lý học sinh</title>
     <style>
       h1 {
         text-align: center;
@@ -22,7 +22,7 @@
     <div class="layui-layout layui-layout-admin" style="min-width: 700px">
       <div class="layui-header header header-demo" winter="">
         <div class="layui-main">
-          <a href="/">
+          <a href="/public/index.html">
             <span
               style="
                 font-size: 18px;
@@ -32,24 +32,20 @@
                 width: 200px;
                 color: white;
               "
-              >Hệ thống quản lý tình trạng học sinh</span
+              >Hệ thống quản lý học sinh</span
             >
           </a>
 
           <ul style="float: right" class="layui-nav">
             <li class="layui-nav-item">
-              <a href="./console.html">控制台<span class="layui-badge">9</span></a>
+              <a href="/public/index.html"
+                >Thông tin cá nhân<span class="layui-badge-dot"></span
+              ></a>
             </li>
             <li class="layui-nav-item">
-              <a href="">Trung tâm cá nhân<span class="layui-badge-dot"></span></a>
-            </li>
-            <li class="layui-nav-item">
-              <a href=""
-                ><img src="./images/static/logo.jpg" class="layui-nav-img" />Chưa đăng nhập</a
-              >
+              <a href=""><img src="./images/static/logo.jpg" class="layui-nav-img" /></a>
               <dl class="layui-nav-child">
-                <dd><a href="javascript:;">Sửa đổi thông tin</a></dd>
-                <dd><a href="javascript:;">Quản lý an toàn</a></dd>
+                <dd><a href="javascript:;">Đổi mật khẩu</a></dd>
                 <dd><a href="/">Đăng xuất</a></dd>
               </dl>
             </li>
@@ -61,27 +57,12 @@
           <ul class="layui-nav layui-nav-tree">
             <li class="layui-nav-item">
               <a class="javascript:;" href="javascript:;"
-                ><i class="layui-icon layui-icon-username" style="font-size: 18px; color: white"></i
-                >Người dùng học sinh<span class="layui-nav-more"></span
-              ></a>
-              <dl class="layui-nav-child">
-                <dd>
-                  <a href="./index.html">Thông tin đàu vào</a>
-                </dd>
-              </dl>
-            </li>
-
-            <li class="layui-nav-item">
-              <a class="javascript:;" href="javascript:;"
                 ><i class="layui-icon layui-icon-list" style="font-size: 22px; color: white"></i
-                >Quản lý thông tin<span class="layui-nav-more"></span
+                >Quản lý<span class="layui-nav-more"></span
               ></a>
               <dl class="layui-nav-child">
                 <dd class="">
-                  <a href="/demo/grid.html">Xem thông tin học sinh</a>
-                </dd>
-                <dd class="">
-                  <a href="/demo/admin.html">Thông tin chỉ tiết</a>
+                  <a href="/public/table.html">Học sinh</a>
                 </dd>
               </dl>
             </li>
@@ -89,7 +70,7 @@
         </div>
       </div>
       <div class="layui-body" style="min-width: 450px">
-        <h1>Hiển thị thông tin</h1>
+        <h1>Danh sách học sinh</h1>
         <div style="display: none" id="toolbar1">
           <button type="button" class="layui-btn layui-btn-sm">Thêm</button>
           <button type="button" class="layui-btn layui-btn-sm">Chỉnh sửa</button>
@@ -118,17 +99,11 @@
           [
             { type: 'numbers', fixed: 'left' },
             { type: 'checkbox', fixed: 'left' },
-            { field: 'id', title: 'Mã số', width: 100, sort: true },
-            { field: 'name', title: 'Tên', width: 120 },
-            { field: 'sex', title: 'Giới tính', width: 80, sort: true },
-            { field: 'birthday1', title: 'Ngày sinh', width: 120, sort: true },
-            { field: 'xueyuan', title: 'Trường đại học', width: 177 },
-            { field: 'athome', title: 'Ở nhà', width: 80, sort: true },
-            { field: 'group[front]', title: 'Nhóm (trước)', width: 120, sort: true },
-            { field: 'group[end]', title: 'Nhóm (sau)', width: 120, sort: true },
-            { field: 'group[database]', title: 'Nhóm (cơ sở dữ liệu)', width: 120, sort: true },
-            { field: 'group[image]', title: 'Nhóm (hình ảnh)', width: 120, sort: true },
-            { field: 'comment', title: 'Bình luận', width: 180 },
+            { field: 'id', title: 'Mã số', width: 140, sort: true },
+            { field: 'name', title: 'Họ và tên', width: 234, sort: true },
+            { field: 'class', title: 'Lớp', width: 140, sort: true },
+            { field: 'score1', title: 'Trung bình học kỳ 1', width: 220, sort: true },
+            { field: 'score2', title: 'Trung bình học kỳ 2', width: 220, sort: true },
           ],
         ],
         toolbar: '#toolbar1',
