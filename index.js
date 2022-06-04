@@ -45,24 +45,8 @@ app.post('/register', (req, res) => {
 app.post('/adduser', (req, res) => {
   const path = './class.json';
   var userData = req.body;
-  console.log('eee');
-  // fs.readFile("./class.json", "utf8", function readFileCallback(err, data) {
-  //   if (err) {
-  //     console.log(err);
-  //   } else {
-  //     let obj = JSON.parse(data); //now it an object
-  //     obj?.data.push({
-  //       id: (parseInt(obj?.data[obj?.data?.length - 1]?.id) + 1).toString(),
-  //       name: userData.inputName,
-  //       gender: userData.inputGender,
-  //       birthday: userData.inputBirthday,
-  //       address: userData.inputAddress,
-  //     });
-  //     json = JSON.stringify(obj); //convert it back to json
-  //     fs.writeFile(path, json, 'utf8'); // write it back
-  //   }
-  // });
-  let data = fs.readFileSync(path, 'utf8');
+  console.log("eee");
+  let data = fs.readFileSync(path, "utf8");
   let obj = JSON.parse(data);
   obj?.data.push({
     id: (parseInt(obj?.data[obj?.data?.length - 1]?.id) + 1).toString(),
@@ -75,7 +59,50 @@ app.post('/adduser', (req, res) => {
 
   res.send('1');
 });
-app.post('/putForm', (req, res) => {
+app.post("/edituser", (req, res) => {
+  const path = "./class.json";
+  var userData = req.body;
+  console.log("eee");
+  let data = fs.readFileSync(path, "utf8");
+  let obj = JSON.parse(data);
+  obj?.data.shift()
+  obj?.data.unshift({
+    id: userData.inputId,
+    name: userData.inputName,
+    gender: userData.inputGender,
+    birthday: userData.inputBirthday,
+    address: userData.inputAddress,
+  });
+  fs.writeFileSync(path, JSON.stringify(obj));
+
+  res.send("1");
+});
+app.post("/deleteuser", (req, res) => {
+  const path = "./class.json";
+  var userData = req.body;
+  console.log("eee");
+  let data = fs.readFileSync(path, "utf8");
+  let obj = JSON.parse(data);
+  console.log("1: ", obj)
+  const indexOfObject = obj?.data.findIndex(object => {
+    return object.id === userData.inputId;
+  });
+  obj?.data.splice(indexOfObject, 1);
+  console.log("2: ", obj)
+
+  // obj?.data.shift()
+  // obj?.data.unshift({
+  //   id: userData.inputId,
+  //   name: userData.inputName,
+  //   gender: userData.inputGender,
+  //   birthday: userData.inputBirthday,
+  //   address: userData.inputAddress,
+  // });
+  fs.writeFileSync(path, JSON.stringify(obj));
+
+  res.send("1");
+});
+app.post("/putForm", (req, res) => {
   var userData = req.body.userForm;
   var path = './datatable.json';
   userData = JSON.parse(userData);
