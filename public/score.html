@@ -12,30 +12,6 @@
         text-align: center;
         padding: 20px;
       }
-
-      #formcontainer {
-        width: 75%;
-        margin: auto;
-      }
-
-      @media screen and (max-width: 700px) {
-        #formcontainer {
-          width: 95%;
-          float: left;
-        }
-      }
-      #container {
-        min-width: 700px;
-      }
-      #console1 {
-        background-image: url('./images/static/001.jpg');
-        background-size: cover;
-      }
-      #console2 {
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.404);
-      }
       .layui-layout-admin .layui-body {
         bottom: 0px;
       }
@@ -43,7 +19,7 @@
   </head>
 
   <body>
-    <div id="container" class="layui-layout layui-layout-admin">
+    <div class="layui-layout layui-layout-admin" style="min-width: 700px">
       <div class="layui-header header header-demo" winter="">
         <div class="layui-main">
           <a href="/public/index.html">
@@ -62,16 +38,15 @@
 
           <ul style="float: right" class="layui-nav">
             <li class="layui-nav-item">
-              <a href="">console<span class="layui-badge">9</span></a>
+              <a href="/public/index.html"
+                >Thông tin cá nhân<span class="layui-badge-dot"></span
+              ></a>
             </li>
             <li class="layui-nav-item">
-              <a href="">personal center<span class="layui-badge-dot"></span></a>
-            </li>
-            <li class="layui-nav-item">
-              <a href=""><img src="./images/static/logo.jpg" class="layui-nav-img" />I</a>
+              <a href=""><img src="./images/static/logo.jpg" class="layui-nav-img" /></a>
               <dl class="layui-nav-child">
                 <dd><a href="javascript:;">Đổi mật khẩu</a></dd>
-                <dd><a href="javascript:;">Return</a></dd>
+                <dd><a href="/">Đăng xuất</a></dd>
               </dl>
             </li>
           </ul>
@@ -87,20 +62,27 @@
               ></a>
               <dl class="layui-nav-child">
                 <dd class="">
-                  <a href="./student.html">Học sinh</a>
+                  <a href="/public/student.html">Học sinh</a>
                 </dd>
                 <dd class="">
                   <a href="./class.html">Lớp học</a>
+                </dd>
+                <dd class="">
+                  <a href="./score.html">Bảng điểm</a>
                 </dd>
               </dl>
             </li>
           </ul>
         </div>
       </div>
-      <div class="layui-body" style="min-width: 450px" id="console1">
-        <div id="console2">
-          <h1 style="color: rgba(255, 255, 255, 0.7)">console</h1>
+      <div class="layui-body" style="min-width: 450px">
+        <h1>Bảng điểm</h1>
+        <div style="display: none" id="toolbar1">
+          <button type="button" class="layui-btn layui-btn-sm">Thêm</button>
+          <button type="button" class="layui-btn layui-btn-sm">Chỉnh sửa</button>
+          <button type="button" class="layui-btn layui-btn-sm">Xoá</button>
         </div>
+        <table id="demo" lay-filter="test"></table>
       </div>
     </div>
   </body>
@@ -108,6 +90,33 @@
   <script>
     layui.use('element', function () {
       var element = layui.element;
+    });
+    layui.use('table', function () {
+      var table = layui.table;
+
+      table.render({
+        skin: 'row',
+        even: true,
+        elem: '#demo',
+        height: 512,
+        url: '/getScores',
+        limits: [10, 20, 30, 40, 50, 60, 70, 80, 90],
+        limit: 10,
+        page: true,
+        cols: [
+          [
+            { type: 'numbers', fixed: 'left' },
+            { type: 'checkbox', fixed: 'left' },
+            { field: 'id', title: 'Mã số', width: 140, sort: true },
+            { field: 'name', title: 'Họ và tên', width: 234, sort: true },
+            { field: 'score15', title: 'Điểm 15 phút', width: 190, sort: true },
+            { field: 'score60', title: 'Điểm 1 tiết', width: 190, sort: true },
+            { field: 'scoreLast', title: 'Điểm cuối kỳ', width: 200, sort: true },
+          ],
+        ],
+        toolbar: '#toolbar1',
+        defaultToolbar: ['filter', 'print', 'exports'],
+      });
     });
   </script>
   <script></script>

@@ -14,25 +14,65 @@ app.use('/public', express.static('public'));
 app.get('/', function (req, res) {
   res.redirect('/public/login.html');
 });
-app.get('/testdata', (req, res) => {
+app.get('/getStudents', (req, res) => {
   var file = './datatable.json';
   var result = JSON.parse(fs.readFileSync(file));
   res.json(result);
 });
-
 //lấy thông tin từ file dataclass
 app.get('/dataclass', (req, res) => {
   var file = './dataclass.json';
   var result = JSON.parse(fs.readFileSync(file));
   res.json(result);
 });
-
-
+app.get('/getClass', (req, res) => {
+  var file = './class.json';
+  var result = JSON.parse(fs.readFileSync(file));
+  res.json(result);
+});
+app.get('/getScores', (req, res) => {
+  var file = './score.json';
+  var result = JSON.parse(fs.readFileSync(file));
+  res.json(result);
+});
 app.post('/register', (req, res) => {
   var path = './user.json';
   var userData = req.body.userData;
   userData = JSON.parse(userData);
   writeJson(userData, path);
+  res.send('1');
+});
+app.post('/adduser', (req, res) => {
+  const path = './class.json';
+  var userData = req.body;
+  console.log('eee');
+  // fs.readFile("./class.json", "utf8", function readFileCallback(err, data) {
+  //   if (err) {
+  //     console.log(err);
+  //   } else {
+  //     let obj = JSON.parse(data); //now it an object
+  //     obj?.data.push({
+  //       id: (parseInt(obj?.data[obj?.data?.length - 1]?.id) + 1).toString(),
+  //       name: userData.inputName,
+  //       gender: userData.inputGender,
+  //       birthday: userData.inputBirthday,
+  //       address: userData.inputAddress,
+  //     });
+  //     json = JSON.stringify(obj); //convert it back to json
+  //     fs.writeFile(path, json, 'utf8'); // write it back
+  //   }
+  // });
+  let data = fs.readFileSync(path, 'utf8');
+  let obj = JSON.parse(data);
+  obj?.data.push({
+    id: (parseInt(obj?.data[obj?.data?.length - 1]?.id) + 1).toString(),
+    name: userData.inputName,
+    gender: userData.inputGender,
+    birthday: userData.inputBirthday,
+    address: userData.inputAddress,
+  });
+  fs.writeFileSync(path, JSON.stringify(obj));
+
   res.send('1');
 });
 app.post('/putForm', (req, res) => {

@@ -105,7 +105,7 @@ layui.define(function (e) {
                   '</a>'
               : '';
           })(),
-          count: '<span class="layui-laypage-count">Trong tổng số ' + a.count + '</span>',
+          count: '<span class="layui-laypage-count">Tổng cộng ' + a.count + '</span>',
           limit: (function () {
             var e = ['<span class="layui-laypage-limits"><select lay-ignore>'];
             return (
@@ -130,9 +130,9 @@ layui.define(function (e) {
           ].join(''),
           skip: (function () {
             return [
-              '<span class="layui-laypage-skip">Hiển thị từ',
+              '<span class="layui-laypage-skip">Trang',
               '<input type="text" min="1" value="' + a.curr + '" class="layui-input">',
-              'đến<button type="button" class="layui-laypage-btn">10</button>',
+              '/<button type="button" class="layui-laypage-btn">10</button>',
               '</span>',
             ].join('');
           })(),

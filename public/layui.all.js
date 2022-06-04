@@ -589,7 +589,7 @@ layui.define(function (e) {
                   '</a>'
               : '';
           })(),
-          count: '<span class="layui-laypage-count">Trong tổng số ' + a.count + '</span>',
+          count: '<span class="layui-laypage-count">Tổng cộng ' + a.count + '</span>',
           limit: (function () {
             var e = ['<span class="layui-laypage-limits"><select lay-ignore>'];
             return (
@@ -614,9 +614,9 @@ layui.define(function (e) {
           ].join(''),
           skip: (function () {
             return [
-              '<span class="layui-laypage-skip">Hiển thị từ',
+              '<span class="layui-laypage-skip">Trang',
               '<input type="text" min="1" value="' + a.curr + '" class="layui-input">',
-              'đến<button type="button" class="layui-laypage-btn">10</button>',
+              '/<button type="button" class="layui-laypage-btn">10</button>',
               '</span>',
             ].join('');
           })(),
@@ -9315,7 +9315,7 @@ layui.define('jquery', function (e) {
     range: !1,
     height: 200,
     disabled: !1,
-    theme: '#009688',
+    theme: '#0d6efd',
   }),
     (f.prototype.render = function () {
       var e = this,
@@ -9724,8 +9724,8 @@ layui.define('jquery', function (e) {
     format: 'hex',
     predefine: !1,
     colors: [
-      '#009688',
-      '#5FB878',
+      '#0d6efd',
+      '#0d6efd',
       '#1E9FFF',
       '#FF5722',
       '#FFB800',
