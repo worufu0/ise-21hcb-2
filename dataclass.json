@@ -1,0 +1,35 @@
+{
+    "code": 0,
+    "msg": "",
+    "count": 0,
+    "data": [
+        {
+            "id": "1",
+            "class": "10A1",
+            "number": 30,
+            "pass": 0,
+            "rate": 0
+        },
+        {
+            "id": "2",
+            "class": "10A2",
+            "number": 30,
+            "pass": 0,
+            "rate": 0
+        },
+        {
+            "id": "3",
+            "class": "10A3",
+            "number": 40,
+            "pass": 0,
+            "rate": 0
+        },
+        {
+            "id": "4",
+            "class": "10A4",
+            "number": 40,
+            "pass": 0,
+            "rate": 0
+        }
+    ] 
+}

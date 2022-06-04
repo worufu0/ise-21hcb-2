@@ -19,6 +19,12 @@ app.get('/getStudents', (req, res) => {
   var result = JSON.parse(fs.readFileSync(file));
   res.json(result);
 });
+//lấy thông tin từ file dataclass
+app.get('/dataclass', (req, res) => {
+  var file = './dataclass.json';
+  var result = JSON.parse(fs.readFileSync(file));
+  res.json(result);
+});
 app.get('/getClass', (req, res) => {
   var file = './class.json';
   var result = JSON.parse(fs.readFileSync(file));
