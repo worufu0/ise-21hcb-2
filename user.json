@@ -1,30 +1,25 @@
 {
-    "data": [
-      {
-        "userId": "1",
-        "account": "inspire",
-        "password": "123456"
-      },
-      {
-        "userId": "2",
-        "account": "meng",
-        "password": "1234567"
-      },
-      {
-        "userId": "3",
-        "account": "meng1",
-        "password": "1234567"
-      },
-      {
-        "account": "meng2",
-        "password": "12345678",
-        "userId": "4"
-      },
-      {
-        "account": "lanweipengg",
-        "password": "a514514779",
-        "userId": "5"
-      }
-    ],
-    "total": 5
-  }
+  "data": [
+    {
+      "userId": "1",
+      "account": "phu",
+      "password": "123"
+    },
+    {
+      "userId": "2",
+      "account": "nhanh",
+      "password": "123"
+    },
+    {
+      "userId": "3",
+      "account": "tuyen",
+      "password": "123"
+    },
+    {
+      "userId": "4",
+      "account": "lam",
+      "password": "123"
+    }
+  ],
+  "total": 4
+}

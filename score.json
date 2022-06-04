@@ -1,0 +1,71 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 100,
+  "data": [
+    {
+      "id": "101",
+      "name": "Tô Ngọc Thiên Phú",
+      "score15": 9,
+      "score60": 10,
+      "scoreLast": 9.5
+    },
+    {
+      "id": "102",
+      "name": "Kiều Quang Lâm",
+      "score15": 9,
+      "score60": 10,
+      "scoreLast": 9.5
+    },
+    {
+      "id": "103",
+      "name": "Bùi Quang Tuyến",
+      "score15": 9,
+      "score60": 10,
+      "scoreLast": 9.5
+    },
+    {
+      "id": "104",
+      "name": "Đàm Văn Nhanh",
+      "score15": 9,
+      "score60": 10,
+      "scoreLast": 9.5
+    },
+    {
+      "id": "105",
+      "name": "Nguyễn Đức Huy",
+      "score15": 9,
+      "score60": 10,
+      "scoreLast": 9.5
+    },
+    {
+      "id": "106",
+      "name": "Lê Vinh Quang",
+      "score15": 9,
+      "score60": 10,
+      "scoreLast": 9.5
+    },
+    {
+      "id": "107",
+      "name": "Nguyễn Duy Nhật",
+      "score15": 9,
+      "score60": 10,
+      "scoreLast": 9.5
+    },
+    {
+      "id": "108",
+      "name": "Trần Thành Nam",
+      "score15": 9,
+      "score60": 10,
+      "scoreLast": 9.5
+    },
+    {
+      "id": "109",
+      "name": "Phạm Văn Thịnh",
+      "score15": 9,
+      "score60": 10,
+      "scoreLast": 9.5
+    }
+  ],
+  "total": 12
+}
