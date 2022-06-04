@@ -25,14 +25,9 @@ app.get('/getClass', (req, res) => {
   res.json(result);
 });
 app.get('/getScores', (req, res) => {
-  if (typeof window !== 'undefined') {
-    var queryString = window.location.search;
-    var urlParams = new URLSearchParams(queryString);
-    console.log(urlParams.get('page'));
-    var file = './score.json';
-    var result = JSON.parse(fs.readFileSync(file));
-    res.json(result);
-  }
+  var file = './score.json';
+  var result = JSON.parse(fs.readFileSync(file));
+  res.json(result);
 });
 app.post('/register', (req, res) => {
   var path = './user.json';
