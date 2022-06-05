@@ -62,7 +62,71 @@
               ></a>
               <dl class="layui-nav-child">
                 <dd class="">
+                  <a href="/public/student.html">Học sinh</a>
+                </dd>
+                <dd class="">
+                  <!-- <a href="./class.html">Lớp học</a> -->
+                  <a class="javascript:;" href="javascript:;"
+                    >Lớp học<span class="layui-nav-more"></span
+                  ></a>
+                  <dl class="layui-nav-child">
+                    <a class="javascript:;" href="javascript:;"
+                      >Khối 10<span class="layui-nav-more"></span
+                    ></a>
+                    <dl class="layui-nav-child">
+                      <a href="/public/class.html">10A1</a>
+                      <a href="/public/class.html">10A1</a>
+                      <a href="/public/class.html">10A1</a>
+                      <a href="/public/class.html">10A1</a>
+                    </dl>
+                    <a class="javascript:;" href="javascript:;"
+                      >Khối 11<span class="layui-nav-more"></span
+                    ></a>
+                    <dl class="layui-nav-child">
+                      <dd class="">
+                        <a href="/public/class.html">11A1</a>
+                      </dd>
+                      <dd class="">
+                        <a href="/public/class.html">11A2</a>
+                      </dd>
+                      <dd class="">
+                        <a href="/public/class.html">11A3</a>
+                      </dd>
+                    </dl>
+                    <a class="javascript:;" href="javascript:;"
+                      >Khối 12<span class="layui-nav-more"></span
+                    ></a>
+                    <dl class="layui-nav-child">
+                      <dd class="">
+                        <a href="/public/class.html">12A1</a>
+                      </dd>
+                      <dd class="">
+                        <a href="/public/class.html">12A2</a>
+                      </dd>
+                    </dl>
+                  </dl>
+                </dd>
+              </dl>
+              <dl class="layui-nav-child">
+                <dd class="">
                   <a href="/public/report.html">Báo cáo môn học</a>
+                </dd>
+              </dl>
+            </li>
+          </ul>
+          <!--nav page báo cáo học kỳ -->
+          <ul class="layui-nav layui-nav-tree">
+            <li class="layui-nav-item">
+              <a class="javascript:;" href="javascript:;"
+                ><i class="layui-icon layui-icon-list" style="font-size: 22px; color: white"></i>Báo
+                Cáo học kỳ<span class="layui-nav-more"></span
+              ></a>
+              <dl class="layui-nav-child">
+                <dd class="">
+                  <a href="/public/reportsemester.html">Học kỳ 1</a>
+                </dd>
+                <dd class="">
+                  <a href="/public/reportsemester.html">Học kỳ 2</a>
                 </dd>
               </dl>
             </li>
@@ -93,16 +157,17 @@
         even: true,
         elem: '#demo',
         height: 512,
-        url: '/testdata',
+        url: '/getReport',
         page: true,
         cols: [
           [
             { type: 'numbers', fixed: 'left' },
             { type: 'checkbox', fixed: 'left' },
-            { field: 'id', title: 'Mã số', width: 140, sort: true },
-            { field: 'score1', title: 'Sỉ số', width: 220, sort: true },
-            { field: 'score2', title: 'Số lượng đạt', width: 220, sort: true },
-            { field: 'score2', title: 'Tỷ lệ', width: 220, sort: true },
+            { field: 'id', title: 'Mã số', width: 180, sort: true },
+            { field: 'class', title: 'Lớp', width: 179, sort: true },
+            { field: 'total', title: 'Sỉ số', width: 200, sort: true },
+            { field: 'count', title: 'Số lượng đạt', width: 200, sort: true },
+            { field: 'rate', title: 'Tỷ lệ', width: 210, sort: true },
           ],
         ],
         toolbar: '#toolbar1',

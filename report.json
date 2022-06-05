@@ -1,0 +1,71 @@
+{
+  "code": 0,
+  "msg": "",
+  "count": 100,
+  "data": [
+    {
+      "id": 1,
+      "class": "10A2",
+      "total": 40,
+      "count": 38,
+      "rate": 95
+    },
+    {
+      "id": 2,
+      "class": "10A3",
+      "total": 40,
+      "count": 38,
+      "rate": 95
+    },
+    {
+      "id": 3,
+      "class": "10A4",
+      "total": 40,
+      "count": 38,
+      "rate": 95
+    },
+    {
+      "id": 4,
+      "class": "10A1",
+      "total": 40,
+      "count": 38,
+      "rate": 95
+    },
+    {
+      "id": 5,
+      "class": "11A3",
+      "total": 40,
+      "count": 38,
+      "rate": 95
+    },
+    {
+      "id": 6,
+      "class": "11A2",
+      "total": 40,
+      "count": 38,
+      "rate": 95
+    },
+    {
+      "id": 6,
+      "class": "11A1",
+      "total": 40,
+      "count": 38,
+      "rate": 95
+    },
+    {
+      "id": 7,
+      "class": "12A2",
+      "total": 40,
+      "count": 38,
+      "rate": 95
+    },
+    {
+      "id": 10,
+      "class": "12A1",
+      "total": 30,
+      "count": 28,
+      "rate": 95
+    }
+  ],
+  "total": 10
+}

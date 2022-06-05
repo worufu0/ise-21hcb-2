@@ -35,6 +35,11 @@ app.get('/getScores', (req, res) => {
   var result = JSON.parse(fs.readFileSync(file));
   res.json(result);
 });
+app.get('/getReport', (req, res) => {
+  var file = './report.json';
+  var result = JSON.parse(fs.readFileSync(file));
+  res.json(result);
+});
 app.post('/register', (req, res) => {
   var path = './user.json';
   var userData = req.body.userData;
@@ -45,8 +50,8 @@ app.post('/register', (req, res) => {
 app.post('/adduser', (req, res) => {
   const path = './class.json';
   var userData = req.body;
-  console.log("eee");
-  let data = fs.readFileSync(path, "utf8");
+  console.log('eee');
+  let data = fs.readFileSync(path, 'utf8');
   let obj = JSON.parse(data);
   obj?.data.push({
     id: (parseInt(obj?.data[obj?.data?.length - 1]?.id) + 1).toString(),
@@ -59,13 +64,13 @@ app.post('/adduser', (req, res) => {
 
   res.send('1');
 });
-app.post("/edituser", (req, res) => {
-  const path = "./class.json";
+app.post('/edituser', (req, res) => {
+  const path = './class.json';
   var userData = req.body;
-  console.log("eee");
-  let data = fs.readFileSync(path, "utf8");
+  console.log('eee');
+  let data = fs.readFileSync(path, 'utf8');
   let obj = JSON.parse(data);
-  obj?.data.shift()
+  obj?.data.shift();
   obj?.data.unshift({
     id: userData.inputId,
     name: userData.inputName,
@@ -75,20 +80,20 @@ app.post("/edituser", (req, res) => {
   });
   fs.writeFileSync(path, JSON.stringify(obj));
 
-  res.send("1");
+  res.send('1');
 });
-app.post("/deleteuser", (req, res) => {
-  const path = "./class.json";
+app.post('/deleteuser', (req, res) => {
+  const path = './class.json';
   var userData = req.body;
-  console.log("eee");
-  let data = fs.readFileSync(path, "utf8");
+  console.log('eee');
+  let data = fs.readFileSync(path, 'utf8');
   let obj = JSON.parse(data);
-  console.log("1: ", obj)
-  const indexOfObject = obj?.data.findIndex(object => {
+  console.log('1: ', obj);
+  const indexOfObject = obj?.data.findIndex((object) => {
     return object.id === userData.inputId;
   });
   obj?.data.splice(indexOfObject, 1);
-  console.log("2: ", obj)
+  console.log('2: ', obj);
 
   // obj?.data.shift()
   // obj?.data.unshift({
@@ -100,9 +105,9 @@ app.post("/deleteuser", (req, res) => {
   // });
   fs.writeFileSync(path, JSON.stringify(obj));
 
-  res.send("1");
+  res.send('1');
 });
-app.post("/putForm", (req, res) => {
+app.post('/putForm', (req, res) => {
   var userData = req.body.userForm;
   var path = './datatable.json';
   userData = JSON.parse(userData);
