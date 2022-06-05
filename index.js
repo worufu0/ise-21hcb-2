@@ -47,6 +47,36 @@ app.post('/register', (req, res) => {
   writeJson(userData, path);
   res.send('1');
 });
+app.post('/addStudent', (req, res) => {
+  const path = './datatable.json';
+  var userData = req.body;
+  let data = fs.readFileSync(path, 'utf8');
+  let obj = JSON.parse(data);
+  obj?.data.push({
+    id: (parseInt(obj?.data[obj?.data?.length - 1]?.id) + 1).toString(),
+    name: userData.inputName,
+    class: userData.inputClass,
+    score1: userData.inputScore1,
+    score2: userData.inputScore2,
+  });
+  fs.writeFileSync(path, JSON.stringify(obj));
+
+  res.send('1');
+});
+app.post('/deleteStudent', (req, res) => {
+  const path = './datatable.json';
+  var userData = req.body;
+  console.log('eee');
+  let data = fs.readFileSync(path, 'utf8');
+  let obj = JSON.parse(data);
+  const indexOfObject = obj?.data.findIndex((object) => {
+    return object.id === userData.inputId;
+  });
+  obj?.data.splice(indexOfObject, 1);
+  fs.writeFileSync(path, JSON.stringify(obj));
+
+  res.send('1');
+});
 app.post('/adduser', (req, res) => {
   const path = './class.json';
   var userData = req.body;
